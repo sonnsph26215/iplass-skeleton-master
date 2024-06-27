@@ -200,7 +200,7 @@
 
 		<!-- ■ your app command list class (additional="true) ■ -->
 		
-		<property name="annotatedClass" value="storeApp.product.command.ProductListCommand" additional="true" />
+		<property name="annotatedClass" value="storeApp.product.command.CommandList" additional="true" />
 		
 
 		<!-- ■ your tenantLocalStore ■ -->

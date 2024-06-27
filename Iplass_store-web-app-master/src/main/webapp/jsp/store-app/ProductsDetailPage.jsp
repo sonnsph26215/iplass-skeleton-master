@@ -18,27 +18,24 @@ crossorigin="anonymous">
 <div class="border-top mb-3"></div>
 
 <div class="row mt-4">
-<c:forEach var="p" items="${productList}">
+<%-- <c:forEach var="p" items="${productList}">
 	<div class="col-12 col-md-4">
 		<div class="card border-info-subtle">
 			<div class="card-body pt-md-1 text-center">
 				<div>
-					<a href="${URLHelper.getProductDetailPath(p.oid)}">
-					${m:esc(p.name)}</a>
+					<p>Name: <span>${m:esc(p.name)}</span> </p>
 					<p>Category name: <span>${m:esc(p.idCategory.name)}</span> </p>
 				</div>
 				<div class="all-price">
 					${m:esc(p.price)}
 				</div>
-				
 			</div>
 		</div>
 	</div>
-	
-</c:forEach>
+</c:forEach> --%>
 
-<p>page: <span>${m:esc(pageIndex)}</span>  </p>
-<p>total page: <span>${m:esc(totalPage)}</span> </p>
+<p>productInfo: <span>${m:esc(productInfo)}</span>  </p>
+<p>productList: <span>${m:esc(productList)}</span> </p>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
