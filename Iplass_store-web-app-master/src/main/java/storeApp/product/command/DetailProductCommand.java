@@ -29,7 +29,6 @@ command = @CommandConfig(commandClass = DetailProductCommand.class))
 @CommandClass(name = "store-app/product-detail", displayName = "product-detail")
 public class DetailProductCommand implements Command {
 
-
 	private final String PARAM_PRODUCT_ID = "id";
 	private final String PRODUCT_CATEGORY_OID = Product.CODE_PRODUCT + "." + CategoryProduct.OID;
 	private final int RESULT_LIMIT = 5;
@@ -51,7 +50,7 @@ public class DetailProductCommand implements Command {
 		
 		System.out.print(product.getIdCategory());
 		System.out.print(product.getName());
-		 
+		
 		// 検索処理の実行
 		Limit limit = new Limit(RESULT_LIMIT);
 		String[] propertis = new String[] { Product.OID, Product.NAME, Product.PRICE};

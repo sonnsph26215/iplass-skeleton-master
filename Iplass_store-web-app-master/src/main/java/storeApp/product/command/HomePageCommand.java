@@ -1,5 +1,6 @@
 package storeApp.product.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.iplass.gem.command.Constants;
@@ -14,6 +15,7 @@ import org.iplass.mtp.entity.query.Limit;
 import org.iplass.mtp.entity.query.condition.predicate.Equals;
 
 import storeApp.product.dao.EntityDaoHelper;
+import storeApp.product.dto.ProductCategoryDTO;
 import storeApp.product.entity.CategoryProduct;
 import storeApp.product.entity.Product;
 
@@ -45,14 +47,24 @@ public class HomePageCommand implements Command {
 		Limit limit = new Limit(PRODUCT_LIMIT);
 		String[] properties = new String[] { Product.OID, Product.NAME, Product.PRICE };
 		
+		List<ProductCategoryDTO> list = new ArrayList<ProductCategoryDTO>();
+		
 		for(int i = 0; i < totalCategoryCount; i++) {
 			Equals equals = new Equals(PRODUCT_CATEGORY_OID, categoryProducts.get(i).getOid());
+			
 			List<Product> productList = EntityDaoHelper.searchDistinctEntity(Product.DEFINITION_NAME, equals, limit,
 					properties);
 			if (productList.size() > 0) {
-				request.setAttribute("productList" + i, productList);
+				
+				ProductCategoryDTO categoryDTO = new ProductCategoryDTO();
+				categoryDTO.setOidCategory(categoryProducts.get(i).getOid());
+				categoryDTO.setNameCategory(categoryProducts.get(i).getName());
+				categoryDTO.setProducts(productList);
+				list.add(categoryDTO);
 			}
 		}
+		
+		request.setAttribute("productList", list);
 		
 		return Constants.CMD_EXEC_SUCCESS;
 	  }
