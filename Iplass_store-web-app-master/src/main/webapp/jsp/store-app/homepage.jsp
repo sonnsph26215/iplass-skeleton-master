@@ -38,6 +38,8 @@
 						<div>
 							<a href="<%= URLHelper.getProductDetailPath(i.getOid()) %>"><%= i.getOid() %></a> 
 							<p><%= i.getName() %></p>
+							<button type="button" class="btn btn-outline-dark my-2" 
+							onclick="inputCartInfo('<%= i.getOid() %>');"> add cart </button>
 						</div>
 						<div class="all-price"><%= i.getPrice() %></div>
 					</div>
@@ -52,5 +54,31 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>
+	<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	function inputCartInfo(productId) {
+	    var param = JSON.stringify({ productId: productId });
+	    console.log(param);
+	    $.ajax({
+	        type: "POST",
+	        contentType: "application/json",
+	        url: `${m:tcPath()}/api/store-app/cart/add`,
+	        dataType: "json",
+	        data: param,
+	        success: function(commandResult) {
+	            if (commandResult.exceptionType != null) {
+	                alert(`${m:rs('iplass-wtp-messages', 'samples.ec01.product.detail.jsError')}`
+	                      + commandResult.exceptionType + "\\n" + commandResult.exceptionMessage);
+	                return;
+	            }
+	            if(commandResult.status == "SUCCESS"){
+					var totalAmount = commandResult.totalAmount;
+					console.log(totalAmount);
+	    		}
+	        }
+	    });
+	}
+
+</script>
 </body>
 </html>
