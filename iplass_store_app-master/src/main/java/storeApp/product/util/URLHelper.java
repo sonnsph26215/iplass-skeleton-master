@@ -12,9 +12,14 @@ public class URLHelper {
 	private final static String BINARY_RESOUCE_URL_PATH = PACKAGE_URL_ROOT + "resource/bin?id=%d&type=%s";
 	private final static String DELETE_CART_INFO_URL_PATH = PACKAGE_URL_ROOT + "cart/remove?deleteId=%s";
 	private final static String PAYMENT_URL_PATH = PACKAGE_URL_ROOT + "payment";
+	private final static String CART_INFO_URL_PATH = PACKAGE_URL_ROOT + "cart/info";
 
 	public static String getProductDetailPath(String productId) {
 		return TemplateUtil.getTenantContextPath() + String.format(PRODUCT_DETAIL_URL_PATH, productId);
+	}
+	
+	public static String cartPage() {
+		return TemplateUtil.getTenantContextPath() + CART_INFO_URL_PATH;
 	}
 	
 	public static String getProductByCategoryPath(String categoryId, String page) {

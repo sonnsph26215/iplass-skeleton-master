@@ -74,7 +74,7 @@ crossorigin="anonymous">
                           <span id="js-shopping-bag-counter">0</span>
                         </strong>
                       </div>
-                    <a class="icon-link" href="http://127.0.0.1:5500/cart.html"
+                    <a class="icon-link" href="<%= URLHelper.cartPage() %>"
                       >Giỏ hàng</a
                     >
                     <!-- <i class="fas fa-shopping-cart"></i> -->
@@ -366,26 +366,29 @@ crossorigin="anonymous">
                             <div style="border-bottom:1px solid rgb(230, 230, 230) ;">
                                 <div class="d-flex" style="align-items: center;">
                                     <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:100:100/q:90/plain/https://cellphones.com.vn/media/wysiwyg/cps-ant.png" alt="img-modal">
-                                    <h4>iPhone 15 Pro Max 256GB | Chính hãng VN/A</h4>
+                                    <h4>${m:esc(productInfo.getName())}</h4>
                                 </div>
                                 <div class="mt-5 mb-5">
                                     <h5>Đánh giá chung</h5>
-                                    <input type="range" class="form-range mt-3" min="0" max="4" id="customRange2">
+                                    <input type="range" class="form-range mt-3" min="1" max="5" id="customRange2">
                                 </div>
                             </div>
                             <div class="mt-3">
-                                <textarea class="form-control textarea" placeholder="Xin mời chia sẻ một số cảm nhận về sản phẩm (nhập tối thiểu 15 kí tự)"></textarea>
-                                <div>
+                            <input class="form-control mb-3"  placeholder="Họ Và Tên" id="name-user">
+                            <input value="${productInfo.getOid()}" id="productid" style="display: none;">
+                            <textarea class="form-control textarea" id="comment"
+                            placeholder="Xin mời chia sẻ một số cảm nhận về sản phẩm (nhập tối thiểu 15 kí tự)"></textarea>
+                                <!-- <div>
                                     <input id="image" type="file" style="display: none;">
                                     <label for="image" class="btn-add">
                                         <i class="fa-solid fa-file-image"></i>
                                         <p>Thêm hình ảnh</p>
                                     </label>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-danger">Gửi đánh giá</button>
+                        <button type="button" class="btn btn-danger" onclick="addComment();">Gửi đánh giá</button>
                         </div>
                     </div>
                     </div>
@@ -393,66 +396,39 @@ crossorigin="anonymous">
             </div>
             <div class="mt-3">
                 <div class="box-review-title"><h4>Nhận xét của khách hàng</h4></div>
+                
                 <div class="box-review mt-4">
-                    <div class="box-review-item mt-3">
+                
+                <c:forEach var="item" items="${ review }">
+                <div class="box-review-item mt-3">
                         <div class="review-item-title d-flex">
                             <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:100:100/q:90/plain/https://cellphones.com.vn/media/wysiwyg/cps-ant.png" alt="avt" style="width: 32px; height: 32px; border-radius: 50%;">
-                            <h6 style="margin-left: 10px;">Nguyễn Văn A</h6>
+                            <h6 style="margin-left: 10px;">${m:esc(item.nameReview)}</h6>
                         </div>
                         <div class="review-item-content">
                             <div class="d-flex" style="height: 30px; margin-left: 35px;">
-                                <span style="border-right:1px solid rgb(230, 230, 230);"><i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i></p></span>
-                                    <div style="border: 1px solid rgb(230, 230, 230); margin-left: 15px;">Hiệu năng mạnh mẽ</div>
-                                    <div style="border: 1px solid rgb(230, 230, 230); margin-left: 15px;">Thời lượng pin cực khủng</div>
+                                <span style="border-right:1px solid rgb(230, 230, 230);">
+                                    <i class="fas fa-star"></i> 
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i> 
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                 </span>
+                                    <!-- <div style="border: 1px solid rgb(230, 230, 230); margin-left: 15px;">Hiệu năng mạnh mẽ</div>
+                                    <div style="border: 1px solid rgb(230, 230, 230); margin-left: 15px;">Thời lượng pin cực khủng</div> -->
                             </div>
                             <div class="mt-2" style="margin-left: 35px;">
-                            <p>Đã sử dụng được 1 tháng, cảm thấy rất hài lòng về sản phẩm</p>
+                            <p>${m:esc(item.commentReview)}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="box-review-item mt-3">
-                        <div class="review-item-title d-flex">
-                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:100:100/q:90/plain/https://cellphones.com.vn/media/wysiwyg/cps-ant.png" alt="avt" style="width: 32px; height: 32px; border-radius: 50%;">
-                            <h6 style="margin-left: 10px;">Nguyễn Văn A</h6>
-                        </div>
-                        <div class="review-item-content">
-                            <div class="d-flex" style="height: 30px; margin-left: 35px;">
-                                <span style="border-right:1px solid rgb(230, 230, 230);"><i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i></p></span>
-                                    <div style="border: 1px solid rgb(230, 230, 230); margin-left: 15px;">Hiệu năng mạnh mẽ</div>
-                                    <div style="border: 1px solid rgb(230, 230, 230); margin-left: 15px;">Thời lượng pin cực khủng</div>
-                            </div>
-                            <div class="mt-2" style="margin-left: 35px;">
-                            <p>Đã sử dụng được 1 tháng, cảm thấy rất hài lòng về sản phẩm</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-review-item mt-3">
-                        <div class="review-item-title d-flex">
-                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:100:100/q:90/plain/https://cellphones.com.vn/media/wysiwyg/cps-ant.png" alt="avt" style="width: 32px; height: 32px; border-radius: 50%;">
-                            <h6 style="margin-left: 10px;">Nguyễn Văn A</h6>
-                        </div>
-                        <div class="review-item-content">
-                            <div class="d-flex" style="height: 30px; margin-left: 35px;">
-                                <span style="border-right:1px solid rgb(230, 230, 230);"><i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i></p></span>
-                                    <div style="border: 1px solid rgb(230, 230, 230); margin-left: 15px;">Hiệu năng mạnh mẽ</div>
-                                    <div style="border: 1px solid rgb(230, 230, 230); margin-left: 15px;">Thời lượng pin cực khủng</div>
-                            </div>
-                            <div class="mt-2" style="margin-left: 35px;">
-                            <p>Đã sử dụng được 1 tháng, cảm thấy rất hài lòng về sản phẩm</p>
-                            </div>
-                        </div>
-                    </div>
+                </c:forEach>
+                    
                 </div>
             </div>
         </div>
         </div>
-       <p>${m:esc(review)}</p>
+     <%--   <p>${m:esc(review)}</p> --%>
     </main>
     <footer class="footer">
             <div class="footer-container">
@@ -1518,10 +1494,10 @@ crossorigin="anonymous">
                 </div>
             </div>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/264642374c.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     
     <script type="text/javascript">
@@ -1578,6 +1554,36 @@ crossorigin="anonymous">
 </script>
 
     <script>
+    function addComment() {
+        // Lấy giá trị từ các ô input
+        const name = document.getElementById('name-user').value;
+        const comment = document.getElementById('comment').value;
+        const rating = document.getElementById('customRange2').value;
+        const productid = document.getElementById('productid').value;
+        
+        var param = JSON.stringify({ name: name, comment: comment, vote: rating, productId: productid });
+	    $.ajax({
+	        type: "POST",
+	        contentType: "application/json",
+	        url: `${m:tcPath()}/api/store-app/review/add`,
+	        dataType: "json",
+	        data: param,
+	        success: function(commandResult) {
+	            if (commandResult.exceptionType != null) {
+	                alert(`${m:rs('iplass-wtp-messages', 'samples.ec01.product.detail.jsError')}`
+	                      + commandResult.exceptionType + "\\n" + commandResult.exceptionMessage);
+	                return;
+	            }
+	            if(commandResult.status == "SUCCESS"){
+					console.log("SUCCESS");
+					 var modal = document.getElementById('exampleModal');
+			         var modalInstance = bootstrap.Modal.getInstance(modal);
+			         modalInstance.hide();
+	    		}
+	        }
+	    });
+        }
+    
         const slider = document.querySelector('.product-slider');
           const productList = document.querySelector('.product-list');
           const prevBtn = document.getElementById('prevBtn');

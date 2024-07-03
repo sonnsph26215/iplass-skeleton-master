@@ -44,7 +44,7 @@ public class getCartBeanCommand implements Command {
 			
 			Object[] productIds = cartBean.getProductIds().toArray();
 			In in = new In(Product.OID, productIds);
-			String[] properties = new String[] { Product.OID, Product.NAME, Product.PRICE};
+			String[] properties = new String[] { Product.OID, Product.NAME, Product.PRICE, Product.OLD_PRICE, Product.PRODUCT_IMAGE};
 			List<Product> products = EntityDaoHelper.searchDistinctEntity(Product.DEFINITION_NAME, in, properties);
 			
 			List<CartItem> items = cartBean.getCartItems();

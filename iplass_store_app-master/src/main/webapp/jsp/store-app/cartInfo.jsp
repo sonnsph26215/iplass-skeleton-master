@@ -125,7 +125,7 @@
                                                         <span class="product-price-show">
                                                             <%=c.getProduct().getPrice()%>
                                                         </span> <span class="product-price-through">
-                                                            <%=c.getTotalPrice()%>
+                                                            <%=c.getProduct().getOldPrice()%>
                                                         </span>
                                                     </div>
 

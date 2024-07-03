@@ -84,7 +84,7 @@
                           <span id="js-shopping-bag-counter">0</span>
                         </strong>
                       </div>
-                    <a class="icon-link" href="#"
+                    <a class="icon-link" href="<%= URLHelper.cartPage() %>"
                       >Giỏ hàng</a
                     >
                     <!-- <i class="fas fa-shopping-cart"></i> -->

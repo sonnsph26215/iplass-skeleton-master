@@ -42,7 +42,7 @@ public class DetailProductCommand implements Command {
 		request.setAttribute("productInfo", product);
 		
 		Limit limit = new Limit(RESULT_LIMIT);
-		String[] propertis = new String[] { Product.OID, Product.NAME, Product.PRICE};
+		String[] propertis = new String[] { Product.OID, Product.NAME, Product.PRICE, Product.OLD_PRICE, Product.PRODUCT_IMAGE};
 		List<Product> productList = EntityDaoHelper.searchDistinctEntity(Product.DEFINITION_NAME, null, limit, propertis);
 		if (productList.size() > 0) {
 			request.setAttribute("productList", productList);

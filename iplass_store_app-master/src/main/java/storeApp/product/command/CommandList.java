@@ -13,6 +13,7 @@ import org.iplass.mtp.command.annotation.MetaDataSeeAlso;
 	storeApp.product.command.cart.RemoveCartItemCommand.class,
 	storeApp.product.command.cart.UpdateCartItemCommand.class,
 	storeApp.product.command.PaymentCommand.class,
+	storeApp.product.command.review.addReviewProductCommand.class,
 })
 public class CommandList {
 

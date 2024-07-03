@@ -42,8 +42,8 @@ public class CartBean implements Serializable {
 		for (int index = 0; index < this.cartItems.size(); index++) {
 			CartItem item = this.cartItems.get(index);
 			if (item.getProductId().equals(productId)) {
-				item.setQuantity(quantity);
 				this.totalPrice = this.totalPrice + (quantity - item.getQuantity()) * item.getPrice();
+				item.setQuantity(quantity);
 				return;
 			}
 		}
